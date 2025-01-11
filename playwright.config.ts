@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import dotenv from "dotenv";
 
 /**
  * Read environment variables from file.
@@ -8,11 +9,12 @@ import { defineConfig, devices } from "@playwright/test";
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
+dotenv.config();
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: "./tests",
+  testDir: "./tests/testSuite/",
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -26,9 +28,8 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: (process.env.LANG = "JA"
-      ? "https://hotel.testplanisphere.dev/ja/"
-      : "https://hotel.testplanisphere.dev/en-US/";
+    baseURL:
+      process.env.BASE_URL || "https://hotel-example-site.takeyaqa.dev/ja",
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
@@ -79,3 +80,5 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
+
+export default config;

@@ -30,6 +30,6 @@ export class SignUpPage extends BacicPage {
   } as const;
 
   async visit(): Promise<void> {
-    await this.page.goto("/signup");
+    await this.page.goto(`${this.origin}/signup.html`);
   }
 }
